@@ -1,0 +1,111 @@
+<html>
+	<head>
+		<title>Vibe Check 4</title>
+		<link rel="stylesheet" type="text/css" href="/css/vibe_check_4.css">
+		<link href="https://fonts.googleapis.com/css?family=Archivo+Black&display=swap" rel="stylesheet">
+		<script type="text/javascript" src="/js/paper-full.js" ></script>
+		<script type="text/paperscript" canvas="mycanvas"> 
+		// Define two points which we will be using to construct
+		// the path and to position the gradient color:
+		console.log(view.size.width);
+		var topLeft = [0,0];
+		var bottomRight = [view.size.width, view.size.height];
+
+		// Create a rectangle shaped path between
+		// the topLeft and bottomRight points:
+		var path = new Path.Rectangle({
+		topLeft: topLeft,
+		bottomRight: bottomRight,
+		
+		// Fill the path with a gradient of three color stops
+		// that runs between the two points we defined earlier:
+		fillColor: {
+			gradient: {
+				stops: ['purple',  'green']
+			},
+			origin: topLeft,
+			destination: bottomRight
+		}
+		});
+			
+			var text = new PointText(new Point(view.size.width/2-2, (view.size.height/2.3)-2));
+			var subtitle = new PointText(new Point((view.size.width/2), (view.size.height/2)-2));
+			var style = {
+				fontSize: 70,
+				fillColor: 
+				{
+					hue: Math.random * 360,
+					saturation: 1,
+					brightness: 1
+				}, 
+				justification: "center",
+				fontFamily: "Archivo Black"
+			};
+			
+			text.content = "vibe check";
+			text.style = style;
+			
+			subtitle.content = "click to enhance vibes";
+			subtitle.style = style; 
+			subtitle.fontSize = 20; 
+		
+		var rand_x =Math.random() < 0.5 ? -2 : 2;
+		var rand_y = Math.random() < 0.5 ? -2 : 2; 
+		var animate = 1; 
+		
+		tool.onKeyDown =  function(event)
+		{
+			if (event.key == 'space')
+			{
+				if(animate)
+				{
+					animate = 0;
+				}
+				else 
+				{
+					animate = 1; 
+				}
+			}
+		}
+		
+		function onFrame(event)
+		{
+			if(animate)
+			{
+				console.log("topLeft:" + text.bounds.topLeft);
+				console.log("bottomRight:" + text.bounds.bottomRight);
+
+				text.translate(rand_x, rand_y);
+				subtitle.translate(rand_x, rand_y);
+				
+				if(text.bounds.bottomRight.x > paper.view.size.width || text.bounds.topLeft.x < 0)
+				{
+					rand_x = -rand_x;
+					
+					var old_hue = text.fillColor.hue; 
+					text.fillColor.hue = Math.random() * 360;
+					subtitle.fillColor.hue = text.fillColor.hue; 
+					
+					
+				}
+				else if(text.bounds.topLeft.y < -13 || subtitle.bounds.bottomRight.y > view.size.height + 10)
+				{
+					rand_y = -rand_y;
+					
+					var old_hue = text.fillColor.hue; 
+					text.fillColor.hue = Math.random() * 360;
+					subtitle.fillColor.hue = text.fillColor.hue; 
+				}
+			}
+		}
+			
+			
+			
+		
+		
+		</script>
+	</head>
+	<body>
+		<canvas id="mycanvas"></canvas>
+	</body>
+</html>

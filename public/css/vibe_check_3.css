@@ -1,0 +1,22 @@
+@font-face{ 
+	font-family: 'Kush';
+	src: url('/fonts/Kush_.eot');
+	src: url('KushFat-AZOg.eot?#iefix') format('embedded-opentype'),
+	     url('/fonts/Kush_.woff') format('woff'),
+	     url('/fonts/Kush_.ttf') format('truetype'),
+	     url('/fonts/Kush_.svg') format('svg');
+	font-display: swap;
+}
+
+body, html {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+
+canvas[resize]  {
+	background: black;
+	width: 100%;
+	height: 100%;
+}
+

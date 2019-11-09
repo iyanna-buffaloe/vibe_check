@@ -1,0 +1,41 @@
+#play_btn {
+	margin: auto;
+}
+h1 
+{
+	font-size: 55px;
+	letter-spacing: 12px;
+}
+i {
+	font-size: 20px;
+	color: white;
+}
+
+body {
+	background-image: url(http://giphygifs.s3.amazonaws.com/media/kVHdnAXwSpsxW/giphy.webp);
+	/*background-color: white;*/
+	color: white;
+}
+
+#bottom-nav {
+	border-top: 1px solid;
+}
+
+.word-vibes {
+	margin-top:10%;
+	text-align: center;
+	text-shadow: 0px 4px 3px rgba(0,0,0,0.6),
+				 0px 8px 13px rgba(0,0,0,0.1),
+				 0px 18px 23px rgba(0,0,0,0.1);
+}
+
+.word-vibes:hover {
+	text-shadow: 0px 4px 3px rgba(255,255,255,0.6),
+				 0px 8px 13px rgba(0,0,0,0.1),
+				 0px 18px 23px rgba(0,0,0,0.1);
+}
+
+
+#subtitle-vibes {
+	font-size: 24px;
+}

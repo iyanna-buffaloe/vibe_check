@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Vibe Check 3</title>
+	<link rel="stylesheet" type="text/css" href="/css/vibe_check_3.css">
+	<script type="text/javascript" src="/js/paper-full.js"></script>
+	<script type="text/paperscript" canvas="mycanvas">
+		var stars = []; 
+		var radii = [];
+		var velocity = 0.5; 
+		for (var i = 0; i < 700; i++)
+		{
+			var random_size = Math.random() * 2 + 1;
+			var circle = new Path.Circle(new Point(view.size.width, view.size.height) * Point.random(), random_size);
+			stars.push(circle); 
+			radii.push(random_size);
+			circle.fillColor = "white";
+		}
+
+		for(var i = 0; i < stars.length; i++)
+		{
+			var assign_rate = radii[i] * velocity * (Math.random());
+			stars[i].rate = assign_rate;
+		}
+
+		function onFrame(event)
+		{
+			for(var i = 0; i < stars.length; i++)
+			{
+				stars[i].translate(stars[i].rate, 0);
+				if(stars[i].position.x > view.size.width)
+				{
+					stars[i].position.x = 0;
+				}
+				else if (stars[i].position.x < 0)
+				{
+					stars[i].position.x = view.size.width;
+				}
+			}
+		}
+
+		var shadow_text = new PointText(new Point(view.size.width/2, (view.size.height/2.3)));
+		var text = new PointText(new Point((view.size.width/2)-2, (view.size.height/2.3)-2));
+
+		var subtitle_shadow = new PointText(new Point(view.size.width/2, (view.size.height/1.9)));
+		var subtitle = new PointText(new Point((view.size.width/2)-2, (view.size.height/1.9)-2));
+
+
+		var instructions = new PointText(new Point((view.size.width/2), (view.size.height/1.7)));
+		
+		var green_style = 
+		{
+			justification: "center",
+			fillColor: "#23FF00",
+			fontFamily: "Kush"
+
+		};
+
+		var purple_style = {
+			justification: "center",
+			fillColor: "#A02AAC",
+			fontFamily: "Kush"
+		};
+
+		shadow_text.style = green_style;
+		shadow_text.content = "Vibe Check";
+		shadow_text.fontSize = 70;
+
+		text.style = purple_style;
+		text.content = "Vibe Check";
+		text.fontSize = 70;
+
+		subtitle.style = purple_style;
+		subtitle.content = "today's vibe: wtfisgoingon"
+		subtitle.fontSize = 40;
+
+		subtitle_shadow.style = green_style;
+		subtitle_shadow.content = "today's vibe: wtfisgoingon";
+		subtitle_shadow.fontSize= 40; 
+		
+		instructions.content = "(press for max vibes)"; 
+		instructions.fillColor = "white";
+		instructions.fontSize = 15;
+		instructions.justification = "center";
+
+		var pressed = 0; 
+		
+		/* move the text down when clicked */
+		text.onMouseDown = press_down;
+		subtitle.onMouseDown = press_down; 
+		
+		/* move the text up when unclicked */
+		text.onMouseUp = press_up;
+		subtitle.onMouseUp = press_up; 
+
+		/* same but for spacebar */ 
+		tool.onKeyDown =  function(event)
+		{
+			if (event.key == 'space')
+			{
+				press_down(); 
+			}
+		}
+		
+		tool.onKeyUp = function(event) {
+		if (event.key == 'space')
+			{
+				press_up(); 
+			}
+		
+		}
+		
+		function press_down() {
+			if (!pressed)
+			{
+				play_music();
+				text.translate(2,1); 
+				subtitle.translate(2,1); 
+				pressed = 1; 
+			}
+			
+		}
+		
+		
+		function press_up() {
+			text.translate(-2, -1);
+			subtitle.translate(-2, -1);
+			pressed = 0; 
+		
+		}
+		function play_music() {
+			toggle_sound(); 
+		}
+		
+		function onResize(event)
+		{
+			var shadow_text = new PointText(new Point(view.size.width/2, (view.size.height/2.3)));
+			var text = new PointText(new Point((view.size.width/2)-2, (view.size.height/2.3)-2));
+
+			var subtitle_shadow = new PointText(new Point(view.size.width/2, (view.size.height/1.9)));
+			var subtitle = new PointText(new Point((view.size.width/2)-2, (view.size.height/1.9)-2));
+		}
+
+		/* also change color when hovering */ 
+		text.onMouseEnter = enter;
+		subtitle.onMouseEnter = enter; 
+		
+		
+		text.onMouseLeave = leave;
+		subtitle.onMouseLeave = leave; 
+		
+		function enter ()
+		{
+			text.fillColor.lightness = text.fillColor.lightness + .09;
+			subtitle.fillColor.lightness = subtitle.fillColor.lightness + .09; 
+		}
+		
+		function leave() 
+		 {
+		text.fillColor.lightness = text.fillColor.lightness - .09;
+		subtitle.fillColor.lightness = subtitle.fillColor.lightness - .09; 
+	} 
+	</script>
+</head>
+<body>
+	<canvas id="mycanvas" resize></canvas>
+	
+	<script type="text/javascript" src="/js/vibe_check_3.js"></script>
+</body>
+</html>

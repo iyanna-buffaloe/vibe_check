@@ -1,0 +1,78 @@
+#play_btn {
+	margin: auto;
+}
+h1 
+{
+	font-size: 55px;
+	letter-spacing: 12px;
+}
+i {
+	font-size: 20px;
+	color: white;
+}
+
+body {
+	background-color: #FCFF4F;
+}
+
+#bottom-nav {
+	border-top: 1px solid;
+}
+
+#word-vibes {
+  color: #bc2e1e;
+  text-shadow:
+    0 1px 0px #378ab4,
+    1px 0 0px #5dabcd,
+    1px 2px 1px #378ab4,
+    2px 1px 1px #5dabcd,
+    2px 3px 2px #378ab4,
+    3px 2px 2px #5dabcd,
+    3px 4px 2px #378ab4,
+    4px 3px 3px #5dabcd,
+    4px 5px 3px #378ab4,
+    5px 4px 2px #5dabcd,
+    5px 6px 2px #378ab4,
+    6px 5px 2px #5dabcd,
+    6px 7px 1px #378ab4,
+    7px 6px 1px #5dabcd,
+    7px 8px 0px #378ab4,
+    8px 7px 0px #5dabcd;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    margin-top: 15%;
+    text-align:center;
+    width: 100%; 
+}
+
+h1 {
+	  color: #bc2e1e;
+  text-shadow:
+    0 1px 0px #378ab4,
+    1px 0 0px #5dabcd,
+    1px 2px 1px #378ab4,
+    2px 1px 1px #5dabcd,
+    2px 3px 2px #378ab4,
+    3px 2px 2px #5dabcd,
+    3px 4px 2px #378ab4,
+    4px 3px 3px #5dabcd,
+    4px 5px 3px #378ab4,
+    5px 4px 2px #5dabcd,
+    5px 6px 2px #378ab4,
+    6px 5px 2px #5dabcd,
+    6px 7px 1px #378ab4,
+    7px 6px 1px #5dabcd,
+    7px 8px 0px #378ab4,
+    8px 7px 0px #5dabcd;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    margin-top: 15%;
+    text-align:center;
+}
+
+
+
+
+#subtitle-vibes {
+	font-size: 24px;
+}
