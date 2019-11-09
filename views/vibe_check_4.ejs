@@ -3,6 +3,12 @@
 		<title>Vibe Check 4</title>
 		<link rel="stylesheet" type="text/css" href="/css/vibe_check_4.css">
 		<link href="https://fonts.googleapis.com/css?family=Archivo+Black&display=swap" rel="stylesheet">
+		<script>
+			function navigate_to_url(url)
+			{
+				window.location.href = url; 
+			}
+		</script>
 		<script type="text/javascript" src="/js/paper-full.js" ></script>
 		<script type="text/paperscript" canvas="mycanvas"> 
 		// Define two points which we will be using to construct
@@ -48,6 +54,36 @@
 			subtitle.content = "click to enhance vibes";
 			subtitle.style = style; 
 			subtitle.fontSize = 20; 
+			
+			var right_arrow = new PointText(new Point(view.size.width - (view.size.width/5), view.size.height - (view.size.height/9)));
+		
+		var left_arrow = new PointText(new Point(view.size.width/5, view.size.height - (view.size.height/9)));
+		
+		var arrow_style = {
+		fontSize: 75, 
+		fontFamily: "Archivo Black"
+		}
+		
+		/* right_arrow.content = ">";  reserved for next vibe check */
+		left_arrow.content = "<"; 
+		
+		right_arrow.style = arrow_style; 
+		left_arrow.style = arrow_style; 
+		
+		
+		right_arrow.fillColor = text.fillColor; 
+		left_arrow.fillColor = text.fillColor; 
+		
+		
+		right_arrow.onMouseDown = function() 
+		{
+			/* navigate_to_url("day4"); reserved for next vibe check */ 
+		}
+		left_arrow.onMouseDown = function () {
+			navigate_to_url("day3");
+		}
+		
+		
 		
 		var rand_x =Math.random() < 0.5 ? -2 : 2;
 		var rand_y = Math.random() < 0.5 ? -2 : 2; 
@@ -85,6 +121,8 @@
 					var old_hue = text.fillColor.hue; 
 					text.fillColor.hue = Math.random() * 360;
 					subtitle.fillColor.hue = text.fillColor.hue; 
+					right_arrow.fillColor.hue = text.fillColor.hue; 
+					left_arrow.fillColor.hue = text.fillColor.hue; 
 					
 					
 				}
@@ -95,10 +133,27 @@
 					var old_hue = text.fillColor.hue; 
 					text.fillColor.hue = Math.random() * 360;
 					subtitle.fillColor.hue = text.fillColor.hue; 
+					right_arrow.fillColor.hue = text.fillColor.hue; 
+					left_arrow.fillColor.hue = text.fillColor.hue; 
 				}
 			}
 		}
 			
+		right_arrow.onMouseEnter = function () {
+			right_arrow.fillColor.lightness = text.fillColor.lightness + .09;
+		}
+		
+		left_arrow.onMouseEnter = function () {
+			left_arrow.fillColor.lightness = text.fillColor.lightness + .09;
+		} 
+		
+		right_arrow.onMouseLeave =  function () {
+			right_arrow.fillColor.lightness = text.fillColor.lightness - .09;
+		}
+		
+		left_arrow.onMouseLeave =  function () {
+			left_arrow.fillColor.lightness = text.fillColor.lightness - .09;
+		}
 			
 			
 		

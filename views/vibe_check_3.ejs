@@ -7,7 +7,7 @@
 	<script type="text/paperscript" canvas="mycanvas">
 		var stars = []; 
 		var radii = [];
-		var velocity = 0.5; 
+		var velocity = 0.4; 
 		for (var i = 0; i < 700; i++)
 		{
 			var random_size = Math.random() * 2 + 1;
@@ -82,6 +82,23 @@
 		instructions.fillColor = "white";
 		instructions.fontSize = 15;
 		instructions.justification = "center";
+		
+			
+		var right_arrow = new PointText(new Point(view.size.width - (view.size.width/5), view.size.height - (view.size.height/9)));
+		
+		var left_arrow = new PointText(new Point(view.size.width/5, view.size.height - (view.size.height/9)));
+		
+		var arrow_style = {
+		fontSize: 75, 
+		fontFamily: "Kush", 
+		fillColor: "#A02AAC"
+		}
+		
+		right_arrow.content = ">";
+		right_arrow.style = arrow_style; 
+		
+		left_arrow.content = "<";
+		left_arrow.style = arrow_style;
 
 		var pressed = 0; 
 		
@@ -92,7 +109,15 @@
 		/* move the text up when unclicked */
 		text.onMouseUp = press_up;
 		subtitle.onMouseUp = press_up; 
-
+		
+		right_arrow.onMouseDown = function() 
+		{
+			navigate_to_url("day4");
+		}
+		left_arrow.onMouseDown = function () {
+			navigate_to_url("day2");
+		}
+		
 		/* same but for spacebar */ 
 		tool.onKeyDown =  function(event)
 		{
@@ -120,14 +145,14 @@
 			}
 			
 		}
-		
-		
+
 		function press_up() {
 			text.translate(-2, -1);
 			subtitle.translate(-2, -1);
 			pressed = 0; 
 		
 		}
+		
 		function play_music() {
 			toggle_sound(); 
 		}
@@ -146,8 +171,24 @@
 		subtitle.onMouseEnter = enter; 
 		
 		
+		right_arrow.onMouseEnter = function () {
+			right_arrow.fillColor.lightness = text.fillColor.lightness + .09;
+		}
+		
+		left_arrow.onMouseEnter = function () {
+			left_arrow.fillColor.lightness = text.fillColor.lightness + .09;
+		} 
+		
+		
 		text.onMouseLeave = leave;
 		subtitle.onMouseLeave = leave; 
+		right_arrow.onMouseLeave =  function () {
+			right_arrow.fillColor.lightness = text.fillColor.lightness - .09;
+		}
+		
+		left_arrow.onMouseLeave =  function () {
+			left_arrow.fillColor.lightness = text.fillColor.lightness - .09;
+		}
 		
 		function enter ()
 		{
@@ -159,7 +200,8 @@
 		 {
 		text.fillColor.lightness = text.fillColor.lightness - .09;
 		subtitle.fillColor.lightness = subtitle.fillColor.lightness - .09; 
-	} 
+		} 
+		
 	</script>
 </head>
 <body>

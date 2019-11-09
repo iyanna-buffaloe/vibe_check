@@ -1,5 +1,5 @@
 var sound_playing = 0; 
-var music_vibes = new sound("/audio/day3.mp3");
+var music_vibes = new sound("/audio/day3_revised.mp3");
 
 function toggle_sound()
 {
@@ -12,6 +12,11 @@ function toggle_sound()
 		music_vibes.stop(); 
 		sound_playing = 0;
 	}
+}
+
+function navigate_to_url(url)
+{
+	window.location.href = url; 
 }
 
 function sound(src) {

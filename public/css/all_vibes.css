@@ -1,0 +1,21 @@
+.arrows {
+	color: rgba(192, 192,192, 0.3);
+	font-size: 5rem;
+	position: fixed; 
+	bottom: 5%;
+}
+
+.arrows:hover {
+	color: rgba(192, 192,192, 1);
+	text-decoration: none;
+}
+
+.right-arrow {
+	margin-left: 80%;
+}
+
+.left-arrow {
+	margin-left: 15%;
+}
+
+
