@@ -7,7 +7,7 @@ html, body {
 	background-color: black;
 }
 
-canvas{
+canvas[resize] {
 	height: 100%;
 	width: 100%;
 }
