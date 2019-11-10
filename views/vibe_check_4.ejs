@@ -104,6 +104,10 @@
 			}
 		}
 		
+		text.onMouseDown = function() {
+			toggle_sound();
+		};
+		
 		function onFrame(event)
 		{
 			if(animate)
@@ -138,21 +142,30 @@
 				}
 			}
 		}
-			
+		
+		text.onMouseEnter = function() {
+		text.fillColor.lightness = text.fillColor.lightness + .09;
+		subtitle.fillColor.lightness = subtitle.fillColor.lightness + .09;
+		}
+		
+		text.onMouseLeave = function() {
+		text.fillColor.lightness = text.fillColor.lightness - .09;
+		subtitle.fillColor.lightness = subtitle.fillColor.lightness -  .09;
+		}
 		right_arrow.onMouseEnter = function () {
-			right_arrow.fillColor.lightness = text.fillColor.lightness + .09;
+			right_arrow.fillColor.lightness = right_arrow.fillColor.lightness + .09;
 		}
 		
 		left_arrow.onMouseEnter = function () {
-			left_arrow.fillColor.lightness = text.fillColor.lightness + .09;
+			left_arrow.fillColor.lightness = left_arrow.fillColor.lightness + .09;
 		} 
 		
 		right_arrow.onMouseLeave =  function () {
-			right_arrow.fillColor.lightness = text.fillColor.lightness - .09;
+			right_arrow.fillColor.lightness = right_arrow.fillColor.lightness - .09;
 		}
 		
 		left_arrow.onMouseLeave =  function () {
-			left_arrow.fillColor.lightness = text.fillColor.lightness - .09;
+			left_arrow.fillColor.lightness = left_arrow.fillColor.lightness - .09;
 		}
 			
 			
@@ -162,5 +175,6 @@
 	</head>
 	<body>
 		<canvas id="mycanvas" resize></canvas>
+		<script type="text/javascript" src="/js/vibe_check_4.js"></script>
 	</body>
 </html>
