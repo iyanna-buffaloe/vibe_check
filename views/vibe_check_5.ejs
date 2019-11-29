@@ -11,6 +11,7 @@
 			var all_points = [];
 			var heads = []; 
 			var rand_colors = ['#88e25b', '#8215ea', '#cca2ea', '#ff4538', '#4c51f3', '#26ca97']; 
+			var petal_angle = 0;
 			
 			/* generate the amount of flowers to draw, because it will determine how many flowers to show */ 
 			
@@ -134,21 +135,20 @@
 			{
 				var rate = .75; 
 				
-				
-				for(var i = 0; i < all_points.length; i = i + 7)
-				{
-					
-					all_points[i].rotate(rate);
-					all_points[i+ 1].rotate(rate);
-					all_points[i+ 2].rotate(rate);
-					all_points[i+ 3].rotate(rate);
-					all_points[i+ 4].rotate(rate);
-					all_points[i+ 5].rotate(rate);
-					all_points[i+ 6].rotate(rate);
-					
-					rate = -rate;
-				}
+					for(var i = 0; i < all_points.length; i = i + 7)
+					{
+						all_points[i].rotate(rate);
+						all_points[i+ 1].rotate(rate);
+						all_points[i+ 2].rotate(rate);
+						all_points[i+ 3].rotate(rate);
+						all_points[i+ 4].rotate(rate);
+						all_points[i+ 5].rotate(rate);
+						all_points[i+ 6].rotate(rate);
 
+						rate = -rate;
+						
+					}
+				
 			}
 			
 			function onResize(event)
@@ -161,14 +161,29 @@
 				right_arrow.position.x = view.size.width - (view.size.width/5);
 				left_arrow.position.x = view.size.width/5; 
 				
-				if(view.size.height > current_height)
-				{
-					//generate_flowers(); 
-					current_height = view.size.height;
-				}
-				
 			}
 			
+		vibe_text.shadowColor = new Color(0, 0, 0),
+		// Set the shadow blur radius to 12:
+		vibe_text.shadowBlur = 7,
+		// Offset the shadow by { x: 5, y: 5 }
+		vibe_text.shadowOffset = new Point(5, 5)
+	
+		right_arrow.onMouseEnter = function () {
+			right_arrow.fillColor.lightness = right_arrow.fillColor.lightness - .40;
+		}
+		
+		left_arrow.onMouseEnter = function () {
+			left_arrow.fillColor.lightness = left_arrow.fillColor.lightness - .40;
+		} 
+		
+		right_arrow.onMouseLeave =  function () {
+			right_arrow.fillColor.lightness = right_arrow.fillColor.lightness + .40;
+		}
+		
+		left_arrow.onMouseLeave =  function () {
+			left_arrow.fillColor.lightness = left_arrow.fillColor.lightness + .40;
+		}
 			
 		</script>
 	</head>
