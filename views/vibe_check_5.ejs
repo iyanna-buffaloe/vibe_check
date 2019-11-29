@@ -1,0 +1,159 @@
+<html>
+	<head>
+		<title>Vibe Check 5</title>
+		<link href="https://fonts.googleapis.com/css?family=Gayathri:700|Mallanna&display=swap" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="/css/vibe_check_5.css">
+		<script type="text/javascript" src="/js/paper-full.js" ></script>
+		<script type="text/paperscript" canvas="mycanvas">	
+			var all_points = [];
+			var heads = []; 
+			var rand_x = 0;
+			var rand_y = 0; 
+			var rand_colors = ['#88e25b', '#8215ea', '#cca2ea', '#ff4538', '#4c51f3', '#26ca97']; 
+			
+			for (var i = 0; i < 40; i++)
+			{
+				var rand_pos = Math.floor(Math.random() * 6); 
+				var rand_pos_2 = (rand_pos + 1) % 6; 
+				var rand_pos_3 = (rand_pos_2 + 1) % 6;
+				
+				var rand_petal_color = rand_colors[rand_pos];
+				var rand_head_color = rand_colors[rand_pos_2];
+				var rand_outer_color = rand_colors[rand_pos_3];
+				
+				rand_x = i * 200 % view.size.width;
+				
+				if ( i % 7 == 0 && i != 0)
+				{
+					rand_y = rand_y + 200;
+				}
+
+				var rel_point = {x : rand_x, y: rand_y};
+				
+				var rectangle1 = new Rectangle(new Point(rel_point.x + 115, rel_point.y + 83), new Size(35, 25));
+				var rectangle2 = new Rectangle(new Point(rel_point.x + 110, rel_point.y + 110), new Size(35, 25));
+				var rectangle3 = new Rectangle(new Point(rel_point.x + 83, rel_point.y + 123), new Size(35, 25));
+				var rectangle4 = new Rectangle(new Point(rel_point.x + 55, rel_point.y + 110), new Size(35, 25));
+				var rectangle5 = new Rectangle(new Point(rel_point.x + 45, rel_point.y + 85), new Size(35, 25));
+				var rectangle6 = new Rectangle(new Point(rel_point.x + 60, rel_point.y + 60), new Size(35, 25));
+				var rectangle7 = new Rectangle(new Point(rel_point.x + 95, rel_point.y + 58), new Size(35, 25));
+
+
+				var petal1= new Shape.Ellipse(rectangle1);
+				petal1.fillColor = rand_petal_color;
+
+				var petal2= new Shape.Ellipse(rectangle2);
+				petal2.fillColor = rand_petal_color;
+
+				var petal3 = new Shape.Ellipse(rectangle3); 
+				petal3.fillColor = rand_petal_color;
+
+				var petal4 = new Shape.Ellipse(rectangle4); 
+				petal4.fillColor = rand_petal_color;
+
+				var petal5 = new Shape.Ellipse(rectangle5); 
+				petal5.fillColor = rand_petal_color;
+
+				var petal6 = new Shape.Ellipse(rectangle6); 
+				petal6.fillColor = rand_petal_color;
+
+				var petal7 = new Shape.Ellipse(rectangle7); 
+				petal7.fillColor = rand_petal_color;
+				
+				petal2.rotate(25);
+				petal3.rotate(85);
+				petal4.rotate(135);
+				petal6.rotate(60);
+				petal7.rotate(120);
+
+				var head_outline = new Shape.Circle(new Point(rel_point.x + 100, rel_point.y + 100), 30);
+				var head = new Shape.Circle(new Point(rel_point.x + 102, rel_point.y + 102), 20);
+
+				head.strokeColor = rand_head_color; 
+				head.fillColor = rand_head_color;
+				
+				head_outline.strokeColor = rand_outer_color ; 
+				head_outline.fillColor = rand_outer_color;
+				
+				all_points.push(petal1, petal2, petal3, petal4, petal5, petal6, petal7);
+				heads.push(head); 
+				
+			}
+			
+		var vibe_text = new PointText(new Point(view.size.width / 2, view.size.height - view.size.height /1.6));
+		vibe_text.justification = 'center';
+		vibe_text.fillColor = 'white';
+		vibe_text.fontFamily = 'Gayathri';
+		vibe_text.content = 'vibe check';
+		vibe_text.fontSize = 100;
+			
+			var right_arrow = new PointText(new Point(view.size.width - (view.size.width/5), view.size.height - (view.size.height/9)));
+		
+		var left_arrow = new PointText(new Point(view.size.width/5, view.size.height - (view.size.height/9)));
+		
+		var arrow_style = {
+		fontSize: 75, 
+		fontFamily: "Gayathri",
+		fillColor: 'white'
+		}
+		
+		right_arrow.content = ">";
+		left_arrow.content = "<"; 
+			
+		right_arrow.style = arrow_style;	
+		left_arrow.style = arrow_style;
+		
+		right_arrow.onMouseDown = function() 
+		{
+			navigate_to_url("day6"); 
+		}
+		left_arrow.onMouseDown = function () {
+			navigate_to_url("day4");
+		}
+
+			function onFrame(event)
+			{
+				var rate = .75; 
+				
+				
+				for(var i = 0; i < all_points.length; i = i + 7)
+				{
+					
+					all_points[i].rotate(rate);
+					all_points[i+ 1].rotate(rate);
+					all_points[i+ 2].rotate(rate);
+					all_points[i+ 3].rotate(rate);
+					all_points[i+ 4].rotate(rate);
+					all_points[i+ 5].rotate(rate);
+					all_points[i+ 6].rotate(rate);
+					
+					rate = -rate;
+				}
+				
+				/*for var(j = 0; j < heads.length; j++)
+				{
+					console.log(heads[j]);
+				}*/
+			}
+			
+			function onResize(event)
+			{
+				vibe_text.position.y = view.size.height - view.size.height /1.6;
+				right_arrow.position.y = view.size.height - (view.size.height/9);
+				left_arrow.position.y = view.size.height - (view.size.height/9);
+				
+				vibe_text.position.x = view.size.width / 2
+				right_arrow.position.x = view.size.width - (view.size.width/5);
+				left_arrow.position.x = view.size.width/5; 
+			}
+			
+			
+		</script>
+	</head>
+	<body>
+		<canvas id="mycanvas" resize></canvas>
+		<script type="text/javascript" src="/js/vibe_check_4.js"></script>	
+		<script type="text/javascript" src="/js/vibe_lib.js"></script>
+
+	</body>
+</html>

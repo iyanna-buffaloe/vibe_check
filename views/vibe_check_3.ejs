@@ -20,7 +20,7 @@
 		for(var i = 0; i < stars.length; i++)
 		{
 			var assign_rate = radii[i] * velocity * (Math.random());
-			stars[i].rate = assign_rate;
+			stars[i].rate = stars[i].bounds.width / 20;
 		}
 
 		function onFrame(event)
