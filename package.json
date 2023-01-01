@@ -15,6 +15,6 @@
     "typeface-archivo-black": "0.0.72"
   },
   "devDependencies": {
-    "webpack": "^4.41.2"
+    "webpack": "^5.75.0"
   }
 }
